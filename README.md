@@ -8,6 +8,8 @@
 
 On submission of form document.write() is used.
 
-For validation is done only for necessary fields.
+Validation is done only for necessary fields.
 
 Further a function is cleverly used to handle other's fields in radio buttons.
+
+confirmation of submission of form done by calling function within function.
