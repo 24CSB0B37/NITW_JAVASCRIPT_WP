@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form for Research Opportunities</title>
+    <script>
+        function validateForm() {
+            var phone = document.forms["internshipForm"]["mobilenumber"].value;
+            var email = document.forms["internshipForm"]["email"].value;
+            var pincode = document.forms["internshipForm"]["pincode"].value;
+            var firstname = document.forms["internshipForm"]["firstname"].value;
+            var lastname = document.forms["internshipForm"]["lastname"].value;
+            var city = document.forms["internshipForm"]["city"].value;
+            var country = document.forms["internshipForm"]["country"].value;
+
+            var phonePattern = /^[0-9]{10}$/;
+            var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            var pincodePattern = /^[0-9]{6}$/;
+
+            if (!firstname || !lastname || !city || !country) {
+                alert("Please fill out all the required fields.");
+                return false;
+            }
+
+            if (!phone.match(phonePattern)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return false;
+            }
+
+            if (!email.match(emailPattern)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            if (!pincode.match(pincodePattern)) {
+                alert("Please enter a valid 6-digit postal code.");
+                return false;
+            }
+
+            return refconf();
+        }
+
+        function refconf() {
+            if (window.confirm('Proceed to submit the form?')) {
+                alert('Thanks for your feedback');
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function erref() {
+            if (window.confirm('Do you really want to refresh and clear the form?')) {
+                location.reload();
+            } else {
+                return false;
+            }
+        }
+
+        function clickref(id, action) {
+            if (action === 'show') {
+                document.getElementById(id).style.display = 'block';
+            } else if (action === 'hide') {
+                document.getElementById(id).style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body style="background-color:#CBF0F1; text-align:center;">
+
+    <h1>Registration Form for Research Opportunities</h1>
+    <p>
+        !Note: Any information furnished here will be verified. 
+        Discrepancies will be questioned and can be a cause of 
+        delays in the processing of the form.
+    </p>
+    <a href="form_internship.html" style="color:#6E5801">
+        <marquee width="100%" direction="left">
+            Interested in internships instead? Click here.
+        </marquee>
+    </a>
+
+    <form name="internshipForm" onsubmit="return validateForm()" style="display:inline-block; text-align:left; width: 100%; max-width: 800px; padding: 20px; background-color: #fcf8f5; border-radius: 15px;">
+        <hr>
+        <h2>Personal Details</h2>
+        <a href="https://www.nitw.ac.in/cii" target="_blank">
+            <img src="https://nitw.ac.in/api/static/files/innovation_2024-5-21-12-43-32.jpg" width="40%" style="display:block; margin-left:auto; margin-right:auto;">
+        </a>
+
+        First name:<br> 
+        <input type="text" name="firstname" style="background-color:#E7F6F6; width: 80%; border-radius: 15px; padding: 8px; margin: 10px 0;">
+        <br>
+        Last name:<br>  
+        <input type="text" name="lastname" style="background-color:#E7F6F6; width: 80%; border-radius: 15px; padding: 8px; margin: 10px 0;">
+        <br><br>
+
+        Gender:
+        <select name="gender" style="background-color:#E7F6F6; width: 80%; border-radius: 15px; padding: 8px; margin: 10px 0;">
+            <option>Select</option>
+            <option>Prefer not to say</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        <br><br>
+
+        Date of Birth:<br>   
+        <input type="date" name="dob" style="background-color:#E7F6F6; width: 80%; border-radius: 15px; padding: 8px; margin: 10px 0;">
+        <br>
+
+        ID Type:<br>
+        <input type="radio" id="passport" name="idtype" value="passport" onclick="clickref('otherField', 'hide')">
+        <label for="passport"> Passport </label><br>
+        <input type="radio" id="other" name="idtype" value="other" onclick="clickref('otherField', 'show')">
+        <label for="other"> Other (Subject to additional scrutiny)</label>
+        <br>
+        
+        <div id="otherField" style="display:none;">
+            <input type="text" name="otherid" placeholder="Specify other ID type" style="background-color:#E7F6F6; width: 80%; border-radius: 15px; padding: 8px; margin: 10px 0;">
+        </div>
+
+        Phone no:<br>   
+        <input type="number" name="mobilenumber" style="background-color:#E7F6F6; width: 80%; border-radius: 15px; padding: 8px; margin: 10px 0;">
+        <br>
+
+        E-mail:<br>    
+        <input type="email" name="email" style="background-color:#E7F6F6; width: 80%; border-radius: 15px; padding: 8px; margin: 10px 0;">
+        <br>
+
+        City:<br>   
+        <input type="text" name="city" style="background-color:#E7F6F6; width: 80%; border-radius: 15px; padding: 8px; margin: 10px 0;">
+        <br>
+
+        Country:<br>   
+        <input type="text" name="country" style="background-color:#E7F6F6; width: 80%; border-radius: 15px; padding: 8px; margin: 10px 0;">
+        <br>
+
+        Postal Code:<br>   
+        <input type="number" name="pincode" style="background-color:#E7F6F6; width: 80%; border-radius: 15px; padding: 8px; margin: 10px 0;">
+        <hr>
+
+        <button type="submit" style="background-color:#E7F6F6; padding: 10px 20px; border: none;">Submit</button>
+        <button type="button" onclick="erref()" style="background-color:#E7F6F6; padding: 10px 20px; border: none;">Refresh</button>
+    </form>
+</body>
+</html>
